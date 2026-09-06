@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
@@ -6,6 +7,7 @@ const { execSync } = require('child_process');
 const axios = require('axios');
 
 const app = express();
+app.use(cors());
 const upload = multer({ dest: 'uploads/' });
 
 const ASSEMBLYAI_KEY = process.env.ASSEMBLYAI_KEY;
@@ -95,3 +97,4 @@ app.post('/process', upload.single('video'), async (req, res) => {
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Flick backend running on port ${PORT}`));
+    
